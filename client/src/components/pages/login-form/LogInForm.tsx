@@ -21,7 +21,7 @@ const LogInForm: FunctionComponent<Props> = ({ data}): ReactElement =>{
             resetForm()
             setIsSubmitted(true)
         }else{
-            setErrorMessages('Email not found.')
+            setErrorMessages('Please enter correct email.')
         }
         event.preventDefault();
     }
@@ -51,13 +51,13 @@ const LogInForm: FunctionComponent<Props> = ({ data}): ReactElement =>{
                     <label>Email </label>
                     <input type="email"  value={email} onChange={onEmailChange} required />
                 </div>
-                <div>
+                <div className="error-message">
                     {errorMessages}
                 </div>
            
-             <div className="form-button margin">
-                <input className="submit-button" value="SEND" type="submit"/>
-             </div>
+                <div className="form-button margin">
+                    <input className="button" value="SEND" type="submit"/>
+                </div>
             </div>
         </form>
      );

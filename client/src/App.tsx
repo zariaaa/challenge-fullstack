@@ -14,6 +14,8 @@ function App() {
   */
   const [trackings, setTrackings] = useState<TrackingsInitial[]>()
   const [checkpoints, setCheckpoints] = useState<CheckpointsInitial[]>()
+  const [theme, setTheme] = useState('light');
+  const currentTheme = localStorage.getItem("theme")
 
   /**
       * Fetch data from API Calls and set data.
@@ -48,7 +50,6 @@ function App() {
   */
   const groupedTrackings = new Map();
 
-  // eslint-disable-next-line array-callback-return
   trackings?.map(track => {
     const orderNo = track.orderNo;
     if (!groupedTrackings.has(orderNo)) {
@@ -94,9 +95,29 @@ function App() {
     };
   });
 
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+    localStorage.setItem('theme', theme)
+  };
+
+  useEffect(() => {
+    document.body.className = currentTheme || theme;
+  }, [theme]);
+
   return (
-    <div id="app">
+    <div id="app" className={`${currentTheme}`}>
       <div className='container'>
+        <div className='btn-theme'>
+          <div className='toggle-switch'>
+              <input type="checkbox" onClick={toggleTheme} id="darkmode-toggle"/>
+              <label htmlFor="darkmode-toggle"/>
+          </div>
+          {/* <button type='button' onClick={toggleTheme}>Light/Dark Theme</button> */}
+        </div>
         <BrowserRouter>
             <RoutesMode data={newTrackings}/>
         </BrowserRouter>
