@@ -10,7 +10,7 @@ const LogInForm: FunctionComponent<Props> = ({ data}): ReactElement =>{
 
     const [errorMessages, setErrorMessages] = useState('');
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [email, setEmail] = useState('julian@parcellab.com');
+    const [email, setEmail] = useState('');
     const checkEmailsFromData = data?.map((user: Trackings) => {
         return user.email;
     })
@@ -48,8 +48,8 @@ const LogInForm: FunctionComponent<Props> = ({ data}): ReactElement =>{
                     </div>
                 </div>
                 <div className="form-input">
-                    <label>Email </label>
-                    <input type="email"  value={email} onChange={onEmailChange} required />
+                    <label htmlFor="email">Email</label>
+                    <input type="email" value={email} onChange={onEmailChange} required />
                 </div>
                 <div className="error-message">
                     {errorMessages}

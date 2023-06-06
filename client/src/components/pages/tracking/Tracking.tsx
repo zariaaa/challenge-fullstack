@@ -51,7 +51,7 @@ const Tracking: FunctionComponent<Props> = ({ trackingInformation , handleCallba
             }
             </div>
             <div className="form-button margin">
-                <button type="button" onClick={handleCallback}>GO BACK</button>
+                <button id="back-button" type="button" onClick={handleCallback}>BACK</button>
             </div>
         </div>
     )
