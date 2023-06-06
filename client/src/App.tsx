@@ -1,4 +1,4 @@
-import React , { useEffect , useState }from 'react';
+import React , {  useEffect , useState }from 'react';
 import './App.css';
 import {Trackings, TrackingsInitial, CheckpointsInitial} from './interfaces/InitialData.interface'
 import { BrowserRouter} from "react-router-dom"
@@ -15,8 +15,9 @@ function App() {
   const [trackings, setTrackings] = useState<TrackingsInitial[]>()
   const [checkpoints, setCheckpoints] = useState<CheckpointsInitial[]>()
   const [theme, setTheme] = useState('light');
+  const [isChecked, setIsChecked] = useState<boolean>(false);
   const currentTheme = localStorage.getItem("theme")
-
+  const isToggleChecked = localStorage.getItem("isChecked")
   /**
       * Fetch data from API Calls and set data.
       * @param {TrackingsInitial[]} trackings
@@ -50,7 +51,7 @@ function App() {
   */
   const groupedTrackings = new Map();
 
-  trackings?.map(track => {
+  trackings?.forEach(track => {
     const orderNo = track.orderNo;
     if (!groupedTrackings.has(orderNo)) {
         groupedTrackings.set(orderNo, []);
@@ -96,27 +97,37 @@ function App() {
   });
 
   const toggleTheme = () => {
-    if (theme === 'light') {
-      setTheme('dark');
-    } else {
+    if (theme === 'dark') { 
       setTheme('light');
+      setIsChecked(false)
+      localStorage.setItem('isChecked', `${isChecked}`)
+    } else {
+      setTheme('dark');
+      setIsChecked(true)
+      localStorage.setItem('isChecked', `${isChecked}`)
     }
+    // localStorage.setItem('isChecked', `${isChecked}`)
     localStorage.setItem('theme', theme)
+ 
   };
 
   useEffect(() => {
     document.body.className = currentTheme || theme;
-  }, [theme]);
+  }, [theme, currentTheme]);
+
 
   return (
     <div id="app" className={`${currentTheme}`}>
       <div className='container'>
         <div className='btn-theme'>
           <div className='toggle-switch'>
-              <input type="checkbox" onClick={toggleTheme} id="darkmode-toggle"/>
+              <input 
+                type="checkbox" 
+                onChange={toggleTheme}
+                checked={isToggleChecked === "true" ? true : false}
+                id="darkmode-toggle"/>
               <label htmlFor="darkmode-toggle"/>
           </div>
-          {/* <button type='button' onClick={toggleTheme}>Light/Dark Theme</button> */}
         </div>
         <BrowserRouter>
             <RoutesMode data={newTrackings}/>

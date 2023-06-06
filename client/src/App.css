@@ -106,10 +106,10 @@ body {
 }
 
 .toggle-switch input:checked + label {
-    background: #2b2d3a;
+    background: #04b882;
 }
 .toggle-switch input:checked + label:after {
-    left:70px;
+    left:77px;
     transform: translateX(-100%);
     background: linear-gradient(180deg,#777,#3a3a3a);
 }
@@ -226,6 +226,9 @@ background: #ccc;
         left: unset;
         transform: unset;
     }
+    .toggle-switch input:checked + label:after{
+        left: 70px;
+    }
 }
 
 @media only screen and (max-width: 600px){ 
@@ -254,7 +257,7 @@ background: #ccc;
     }
 
     .toggle-switch input:checked + label:after{
-        left: 60px;
+        left: 65px;
     }
 
 }
