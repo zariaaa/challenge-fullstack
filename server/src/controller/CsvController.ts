@@ -3,7 +3,7 @@ import CsvDataService from "../service/csvData.service";
 import { autoInjectable } from 'tsyringe';
 import csv from 'csv-parser'
 import fs from 'fs';
-import { TrackingFromCsv } from "../interfaces/TrackingFromCsv.interface";
+import { TrackingFromCsv , CheckpointFromCsv } from "../interfaces/TrackingFromCsv.interface";
 
 @autoInjectable()
 export default class CsvController{
@@ -39,7 +39,7 @@ export default class CsvController{
         })
 
         this.router.get('/checkpoints', async (req, res) =>  {
-            const results: any[] = [];
+            const results: CheckpointFromCsv[] = [];
             try {
                 fs.createReadStream('../data/checkpoints.csv')
                 .pipe(csv({ separator: ';' }))

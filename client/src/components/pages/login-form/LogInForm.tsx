@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactElement , useState} from "react";
+import { FormEvent, FunctionComponent, ReactElement , useState} from "react";
 import Orders from "../orders/Orders";
 import "./LoginForm.css";
 import {Trackings } from "../../../interfaces/InitialData.interface";
@@ -6,7 +6,7 @@ export type Props = {
     data: Trackings[],
 }
 
-const LogInForm: FunctionComponent<Props> = ({ data}): ReactElement =>{
+const LogInForm: FunctionComponent<Props> = ({ data }): ReactElement =>{
 
     const [errorMessages, setErrorMessages] = useState('');
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -15,12 +15,12 @@ const LogInForm: FunctionComponent<Props> = ({ data}): ReactElement =>{
         return user.email;
     })
 
-    const handleSubmit = (event: any) => {
+    const handleSubmit = (event: FormEvent) => {
         if(checkEmailsFromData?.includes(email)){
             setErrorMessages('')
             resetForm()
             setIsSubmitted(true)
-        }else{
+        } else {
             setErrorMessages('Email not found.')
         }
         event.preventDefault();
@@ -30,7 +30,7 @@ const LogInForm: FunctionComponent<Props> = ({ data}): ReactElement =>{
         if(event.target.value === ''){
             setErrorMessages('')
         }
-        const getValue =  event?.target.value as any;
+        const getValue =  event?.target.value;
 
         setEmail(getValue)
     }

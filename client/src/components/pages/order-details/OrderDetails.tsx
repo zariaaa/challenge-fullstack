@@ -48,7 +48,7 @@ const OrderDetails: FunctionComponent<Props> = ({ order, onOrderClick}): ReactEl
 
                         <div className="delivery-address">
                             <div className="subtitle">
-                                <span>Delivery address 213213213</span>
+                                <span>Delivery address</span>
                             </div>
                             <div className="subtext">
                                 <span>{`${order!.street}, ${order!.zip_code} ${order!.city}` }</span>
