@@ -1,7 +1,7 @@
 /* 
-Main Green Color- 04b882
-Main Blue Color - 323646
-Blue Darker Color-2b2d3a
+    Main Green Color- 04b882
+    Main Blue Color - 323646
+    Blue Darker Color-2b2d3a
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap');
@@ -10,16 +10,119 @@ Blue Darker Color-2b2d3a
     margin:0;
 }
 
-html, body {
+body {
     height:100%; 
     width: 100%;
     padding: 0;
     margin: 0;
-    background-color: #323646;
     font-weight: bold;
     font-family: 'Comfortaa', cursive;
-
 }
+
+/* Light/Dark Theme Settings */
+.dark {
+    background-color: #323646;
+    color: #fff;
+}
+
+.light {
+    background-color: #fff;
+    color: #000;
+}
+
+.light .description, .light .login-container, .light span , .light a {
+    color: #000;
+}
+
+.dark .description, .dark .login-container, .dark span , .dark a {
+    color: #fff;
+}
+
+.light .order-card {
+    background-color: #fff;
+    box-shadow: unset;
+}
+
+.light .order-card:hover {
+    background-color: #f0f0f0;
+}
+
+.light .form-button input,  .light .form-button button {
+    background-color: #04b882;
+    color: #fff;
+}
+
+.dark .form-button input {
+    background-color: #04b882;
+    color: #fff;
+}
+
+.dark .form-button button {
+    background-color: #2b2d3a;
+    color: #fff;
+}
+
+.light .form-button input:hover,  .light .form-button button:hover {
+    background-color: #f0f0f0;
+    color: #000;
+}
+
+.dark .form-button input:hover,  .dark .form-button button:hover {
+    background-color: #2b2d3a;
+}
+
+/* Toggle Button styles */
+
+.toggle-switch label {
+    width:60px;
+    height:25px;
+    position: fixed;
+    top: 1%;
+    left: 1%;
+    display: block;
+    background: #ebebeb;
+    border-radius: 100px;
+    box-shadow: inset 0px 5px 15px #00000066, inset 0px -5px 15px rgba(255,255,255,0.4);
+    cursor: pointer;
+    z-index: 9999;
+  }
+
+ .toggle-switch  label:after {
+    content: "";
+    width:25px;
+    height: 25px;
+    position: fixed;
+    top: 1%;
+    left: 1%;
+    background: linear-gradient(180deg,#fff126,#c2862b);
+    border-radius: 180px;
+    box-shadow: 0px 5px 10px #00000033;
+  }
+
+.toggle-switch input {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+.toggle-switch input:checked + label {
+    background: #04b882;
+}
+.toggle-switch input:checked + label:after {
+    left:77px;
+    transform: translateX(-100%);
+    background: linear-gradient(180deg,#777,#3a3a3a);
+}
+
+.toggle-switch label, label:after {
+    transition: 0.3s
+}
+
+.toggle-switch label:active:after{ 
+    width: 60px; 
+}
+
+/* Scroller styles */
 
 ::-webkit-scrollbar {
 width: 10px;
@@ -40,28 +143,22 @@ background: #04b882;
 background: #ccc;
 } 
 
-#app{
-    height:100%;
-    align-items: center;
-    color: #fff;
-}
-
-#app .container{
+#app .container {
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
     position: relative;
 }
-#app .centered{
+
+#app .centered {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
-#app .form{
+
+#app .form {
     display: flex;
-    background-color: #323646;
-    color: #fff;
     border-bottom-left-radius: 10%;
     border-top-right-radius: 10%;
     border: 2px solid #04b882;
@@ -70,7 +167,7 @@ background: #ccc;
     overflow: hidden;
 }
 
-#app .form-content{
+#app .form-content {
     display: flex;
     padding: 50px;
     flex-direction: column;
@@ -78,41 +175,40 @@ background: #ccc;
     overflow-y: auto;
 }
 
-#app .title{
+.title {
     text-align: center;
     margin-bottom: 3rem;
 }
 
-#app .title span{
+.title span {
     font-size: 30px;
 }
 
-.subtitle{
+.subtitle {
     font-weight: 200;
     color: #dadada;
     font-size: 14px;
 }
 
-.subtext{
+.subtext {
     color: #fff;
     font-size: 14px;
     margin: 0.5rem 0rem 1rem 0rem;
 }
 
-.description{
-    color: #fff;
+.description {
     font-size: 15px;
     margin: 0.5rem 0rem;
 }
 
-.order-information{
+.order-information {
     display: flex;
     justify-content: space-between;
     margin: 0.5rem 0rem;
 }
 
 @media only screen and (max-width: 1025px){ 
-    #app .form{
+    #app .form {
         width: 100%;
         height: 100%;
         border: unset;
@@ -124,41 +220,44 @@ background: #ccc;
         border-radius: unset;
     }
 
-    #app .container .centered{
+    #app .container .centered {
         position: relative;
         top: unset;
         left: unset;
         transform: unset;
     }
+    .toggle-switch input:checked + label:after{
+        left: 70px;
+    }
 }
 
 @media only screen and (max-width: 600px){ 
-    #app .form{
+    #app .form {
         height: 100%;
         border-bottom-left-radius: 25px;
         border-top-right-radius: 25px;
     }
 
-    #app .form-content{
+    #app .form-content {
         padding: 25px;
-        /* overflow: scroll;
-        -webkit-overflow-scrolling: touch; */
-        /* max-height: 400px; */
-        /* height: auto; */
     }
-    #app .container .centered{
+    #app .container .centered {
         position: relative;
         top: unset;
         left: unset;
         transform: unset;
     }
 
-    #app .title{
+    #app .title {
         margin: 1rem 0rem;
     }
 
-    #app .title span{
+    #app .title span {
         font-size: 20px;
+    }
+
+    .toggle-switch input:checked + label:after{
+        left: 65px;
     }
 
 }
@@ -168,8 +267,6 @@ background: #ccc;
 
     #app .form {
         width: 100%;
-        /* min-width: 230px; */
-        /* height: 100%; */
         border-bottom-left-radius: 25px;
         border-top-right-radius: 25px;
         border: none;
@@ -177,9 +274,6 @@ background: #ccc;
 
     #app .form-content{
         padding: 25px;
-        /* overflow: scroll;
-        -webkit-overflow-scrolling: touch; */
-        /* max-height: 400px; */
     }
 
     #app .title span{
